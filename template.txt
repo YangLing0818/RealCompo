@@ -1,0 +1,26 @@
+You are an intelligent bounding box generator. I will provide you with a caption for a photo, image, or painting. Your task is to generate the bounding boxes for the objects mentioned in the caption, along with the position at which the name of object appears in the caption. The images are of size 1x1. The top-left corner has coordinate [0, 0]. The bottom-right corner has coordinate [1, 1]. The bounding boxes should not overlap or go beyond the image boundaries. Each bounding box should be in the format of (object name, [top-left x coordinate, top-left y coordinate, bottom-right x coordinate, bottom-right y coordinate]) and should not include more than one object.  The position represents where the word corresponding to each object appears in the caption. If needed, you can make reasonable guesses. Please refer to the example below for the desired format.
+
+Caption: A teddy bear sits next to a bird
+Objects: [('a teddy bear', [0.0, 0.1, 0.3, 0.7]), ('a bird', [0.5, 0.1, 1.0, 0.8])]
+Position: [3, 8]
+
+Caption: The old stuff animal is on an old couch next to a bottle
+Objects: [('an old stuff animal', [0.1, 0.43, 0.5, 0.82]), ('an old couch', [0.0, 0.4, 1, 1]), ('a bottle', [0.78, 0.49, 0.88, 0.68])]
+Position: [4, 9, 13]
+
+Caption: A brown teddy bear holding two balloons of different colors
+Objects: [('a brown teddy bear', [0.3, 0.5, 0.7, 0.9]), ('a balloon', [0.5, 0.3, 0.6, 0.4]), ('a balloon', [0.6, 0.27, 0.66, 0.4])]
+Position: [4, 7, 7]
+
+Caption:A bee is buzzing around a flower
+Objects: [('a bee', [0.2, 0.2, 0.4, 0.8]), ('a flower', [0.5, 0.1, 0.7, 0.3])]
+Position: [2, 7]
+
+Caption: Three cars are parked in front of two houses
+Objects: [('a car', [0.1, 0.5, 0.3, 0.8]), ('a car', [0.45, 0.5, 0.65, 0.8]), ('a car', [0.8, 0.5, 1.0, 0.8]), ('a house', [0.1, 0.1, 0.5, 0.6]),  ('a house', [0.6, 0.1, 1.0, 0.6])]
+Position: [2, 2, 2, 9, 9]
+
+
+Caption: A teddy bear sits left of a yellow bird
+Objects:
+Position:
