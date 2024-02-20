@@ -24,7 +24,7 @@ Diffusion models have achieved remarkable advancements in text-to-image generati
 
 ![Alt text](image-1.png)
 
-We introduce a new training-free and transferred-friendly text-to-image generation framework RealCompo that utilizes a novel balancer to achieve dynamic equilibrium between realism and compositionality in generated images.
+We introduce a new **training-free and transferred-friendly** text-to-image generation framework RealCompo that utilizes a novel balancer to achieve dynamic equilibrium between realism and compositionality in generated images.
 
 ## New Updates
 
@@ -68,7 +68,7 @@ We provide the code of RealCompo v1, which is composed of Stable Diffusion v1.5 
 
 You should download the checkpoints of GLIGEN ([HF Hub](https://huggingface.co/gligen/gligen-generation-text-box/blob/main/diffusion_pytorch_model.bin)) put its path into  `inference.py`.
 
-## Inference: Generate images with RealCompo v1
+## Generating images with RealCompo v1
 
 ### Option 1: Use LLMs to reason out the layout
 
