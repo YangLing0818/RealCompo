@@ -22,15 +22,7 @@ Diffusion models have achieved remarkable advancements in text-to-image generati
 
 ## Introduction
 
-<table class="center">
-    <tr>
-    <td width=100% style="border: none"><img src="figs/pipeline.jpg" style="width:100%"></td>
-    </tr>
-    <tr>
-    <td width="100%" style="border: none; text-align: center; word-wrap: break-word">Overview of our RealCompo
-</td>
-  </tr>
-</table>
+![Alt text](image-1.png)
 
 We introduce a new training-free and transferred-friendly text-to-image generation framework RealCompo that utilizes a novel balancer to achieve dynamic equilibrium between realism and compositionality in generated images.
 
