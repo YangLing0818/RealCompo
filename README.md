@@ -1,8 +1,8 @@
 # ![Alt text](image.png)
 
-This repository contains the official implementation of our [RealCompo]().
+This repository contains the official implementation of our [RealCompo](https://arxiv.org/abs/2402.12908).
 
->[**RealCompo: Dynamic Equilibrium between Realism and Compositionality Improves Text-to-Image Diffusion Models**]()    
+>[**RealCompo: Dynamic Equilibrium between Realism and Compositionality Improves Text-to-Image Diffusion Models**](https://arxiv.org/abs/2402.12908)    
 >[Xinchen Zhang\*](https://cominclip.github.io/), 
 >[Ling Yang\*](https://yangling0818.github.io/), 
 >[Yaqi Cai](https://github.com/CCYaqi),
@@ -121,10 +121,10 @@ The core code for updating the models' coefficients is located in `ldm/models/di
 
 ```
 @article{zhang2024realcompo,
-  author    = {Zhang, Xinchen and Yang, Ling and Cai, Yaqi and Yu, Zhaochen and Xie, Jiake and Tian, Ye and Xu, Minkai and Tang, Yong and Yang, Yujiu and Cui, Bin},
-  title     = {RealCompo: Dynamic Equilibrium between Realism and Compositionality Improves Text-to-Image Diffusion Models},
-  journal   = {arXiv:24},
-  year      = {2024},
+  title={RealCompo: Dynamic Equilibrium between Realism and Compositionality Improves Text-to-Image Diffusion Models},
+  author={Zhang, Xinchen and Yang, Ling and Cai, Yaqi and Yu, Zhaochen and Xie, Jiake and Tian, Ye and Xu, Minkai and Tang, Yong and Yang, Yujiu and Cui, Bin},
+  journal={arXiv preprint arXiv:2402.12908},
+  year={2024}
 }
 ```
 ## Acknowledgements
