@@ -1,6 +1,6 @@
 # ![Alt text](image.png)
 
-This repository contains the official implementation of our [RealCompo](https://arxiv.org/abs/2402.12908).
+This repository contains the official implementation of our **training-free** text-to-image framework - [RealCompo](https://arxiv.org/abs/2402.12908).
 
 >[**RealCompo: Dynamic Equilibrium between Realism and Compositionality Improves Text-to-Image Diffusion Models**](https://arxiv.org/abs/2402.12908)    
 >[Xinchen Zhang\*](https://cominclip.github.io/), 
