@@ -228,7 +228,7 @@ def register_attention_control(model, controller):
             query = self.head_to_batch_dim(query)
             key = self.head_to_batch_dim(key)
             value = self.head_to_batch_dim(value)
-            attention_probs = self.get_attention_scores_change(query, key, attention_mask)
+            attention_probs = get_attention_scores_change(query, key, attention_mask)
             # print( attention_probs.shape, place_in_unet)
             attention_probs = controller(attention_probs, is_cross, place_in_unet)
             hidden_states = torch.bmm(attention_probs, value)
