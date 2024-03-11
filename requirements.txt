@@ -1,6 +1,8 @@
+clip==0.2.0
 diffusers==0.19.3
 einops==0.7.0
 imageio==2.22.4
+kornia==0.7.1
 numpy==1.22.4
 omegaconf==2.2.3
 openai==1.12.0

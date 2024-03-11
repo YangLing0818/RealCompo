@@ -3,7 +3,6 @@ import torch
 from PIL import Image
 import cv2
 from typing import Optional, Union, Tuple, List, Callable, Dict
-from IPython.display import display
 from tqdm.notebook import tqdm
 from typing import Optional, Union, Tuple, List, Callable, Dict
 from diffusers import StableDiffusionPipeline
@@ -142,7 +141,7 @@ def view_images(images, num_rows=1, offset_ratio=0.02):
 
     pil_img = Image.fromarray(image_)
     pil_img.save('output.png')
-    display(pil_img)
+
     
 def view_images_attn(images, num_rows=1, offset_ratio=0.02):
     if type(images) is list:
@@ -169,7 +168,6 @@ def view_images_attn(images, num_rows=1, offset_ratio=0.02):
 
     pil_img = Image.fromarray(image_)
     pil_img.save('output_attn.png')
-    display(pil_img)
     
 
 
@@ -180,6 +178,31 @@ def register_attention_control(model, controller):
             to_out = self.to_out[0]
         else:
             to_out = self.to_out
+
+        def get_attention_scores_change(query, key, attention_mask=None):
+            dtype = query.dtype
+            if attention_mask is None:
+                baddbmm_input = torch.empty(
+                    query.shape[0], query.shape[1], key.shape[1], dtype=query.dtype, device=query.device
+                )
+                beta = 0
+            else:
+                baddbmm_input = attention_mask
+                beta = 1
+            attention_scores = torch.baddbmm(
+                baddbmm_input,
+                query,
+                key.transpose(-1, -2),
+                beta=beta,
+                alpha=self.scale,
+            )
+            del baddbmm_input
+            attention_scores = attention_scores.detach()
+            attention_probs = attention_scores.softmax(dim=-1)
+            del attention_scores
+            attention_probs = attention_probs.to(dtype)
+            return attention_probs
+        
         def forward(hidden_states, encoder_hidden_states=None, attention_mask=None,temb=None,):
             is_cross = encoder_hidden_states is not None
             residual = hidden_states
@@ -205,7 +228,7 @@ def register_attention_control(model, controller):
             query = self.head_to_batch_dim(query)
             key = self.head_to_batch_dim(key)
             value = self.head_to_batch_dim(value)
-            attention_probs = self.get_attention_scores(query, key, attention_mask)
+            attention_probs = self.get_attention_scores_change(query, key, attention_mask)
             # print( attention_probs.shape, place_in_unet)
             attention_probs = controller(attention_probs, is_cross, place_in_unet)
             hidden_states = torch.bmm(attention_probs, value)
