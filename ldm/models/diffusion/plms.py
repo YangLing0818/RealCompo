@@ -15,6 +15,7 @@ class PLMSSampler(object):
                  controller, 
                  scale_factor,
                  scale_range,
+                 t0,
                  schedule="linear", 
                  alpha_generator_func=None, 
                  set_alpha_scale=None):
@@ -25,11 +26,14 @@ class PLMSSampler(object):
         self.controller = controller
         self.scale_factor = scale_factor
         self.scale_range = scale_range
+        self.t0 = t0
         self.device = diffusion.betas.device
         self.ddpm_num_timesteps = diffusion.num_timesteps #1000
         self.schedule = schedule
         self.alpha_generator_func = alpha_generator_func
         self.set_alpha_scale = set_alpha_scale
+        if self.t0 == None:
+            self.t0 = 20
 
     def register_buffer(self, name, attr):
         if type(attr) == torch.Tensor:
@@ -206,7 +210,10 @@ class PLMSSampler(object):
                 e_t_layout_uncond, _ = self.layout_unet( unconditional_input ) 
                 e_t_layout = e_t_layout_uncond + guidance_scale * (e_t_layout - e_t_layout_uncond)
                 e_t_text = e_t_text_uncond + guidance_scale * (e_t_text - e_t_text_uncond)
-            e_t = self.compose_epsilon(e_t_layout, e_t_text, influence_layout, influence_text)
+            if i < self.t0:
+                e_t = e_t_layout
+            else:
+                e_t = self.compose_epsilon(e_t_layout, e_t_text, influence_layout, influence_text)
             return e_t
 
         def get_x_prev_and_pred_x0(e_t, index):

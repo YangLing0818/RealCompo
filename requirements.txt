@@ -1,4 +1,5 @@
 clip==0.2.0
+controlnet_aux==0.0.8
 diffusers==0.19.3
 einops==0.7.0
 imageio==2.22.4

@@ -341,7 +341,6 @@ class BasicTransformerBlock(nn.Module):
     def get_attention_map(self, x, context, objs):
         x = self.attn1( self.norm1(x) ) + x 
         x = self.fuser(x, objs) # identity mapping in the beginning 
-        x = self.attn2(self.norm2(x), context, context)
         return self.attn2.get_attention_map(self.norm2(x), context)
 
     def forward(self, x, context, objs):

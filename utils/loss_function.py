@@ -9,7 +9,7 @@ def get_loss(attention_layout, attention_text, input):
         x1, y1, x2, y2 = int(16*x1), int(16*y1), int(16*x2), int(16*y2)
         sum_box = torch.sum(attention_layout[y1:y2, x1:x2, location])
         sum_all = torch.sum(attention_layout[:, :, location])
-        loss += 1 - (sum_all-sum_box) / sum_all
+        loss += 1 - sum_box / sum_all
     for i, (box, location) in enumerate(zip(input['boundingbox'], input['token_location'])):
         x1, y1, x2, y2 = box
         x1, y1, x2, y2 = int(16*x1), int(16*y1), int(16*x2), int(16*y2)

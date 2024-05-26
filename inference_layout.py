@@ -8,6 +8,7 @@ from transformers import CLIPProcessor, CLIPModel, CLIPTokenizer
 import torch 
 from ldm.util import instantiate_from_config
 import numpy as np
+import random
 from functools import partial
 import torchvision.transforms.functional as TF
 from diffusers import UNet2DConditionModel
@@ -226,7 +227,7 @@ def run(meta, config, starting_noise=None):
     uc = text_encoder.encode( config.batch_size*[""] )
     if args.negative_prompt is not None:
         uc = text_encoder.encode( config.batch_size*[args.negative_prompt] )
-
+           
     # pretrained t2i model sd unet
     text_unet = UNet2DConditionModel.from_pretrained(
         config.pretrained_text2img_model,
@@ -244,6 +245,7 @@ def run(meta, config, starting_noise=None):
                                 controller = controller, 
                                 scale_factor = config.scale_factor,
                                 scale_range = config.scale_range,
+                                t0 = config.t0,
                                 alpha_generator_func = alpha_generator_func, 
                                 set_alpha_scale = set_alpha_scale)
     steps = 50 
@@ -294,9 +296,12 @@ if __name__ == "__main__":
     
     parser = argparse.ArgumentParser()
     parser.add_argument("--folder", type=str,  default="generation_samples", help="root folder for output")
-    parser.add_argument("--pretrained_text2img_model", type=str, default='runwayml/stable-diffusion-V1-5', required=False, help="Path to pretrained model or model identifier from huggingface.co/models.")
-    parser.add_argument("--scale_factor", type=int, default=1000, help="")
+    parser.add_argument("--pretrained_text2img_model", type=str, default='Lykon/DreamShaper', required=False, help="Path to pretrained model or model identifier from huggingface.co/models.")
+    parser.add_argument("--scale_factor", type=int, default=1000000, help="")
     parser.add_argument("--scale_range", type = tuple, default=(1.0, 0.5), help="")
+    parser.add_argument("--seed", type=int, default=152644, help="random seed")
+    parser.add_argument("--t0", type=int, default=None, help="when fuse text and layout")
+    parser.add_argument("--style", type = str, default=None, help="style of t2i model")
     parser.add_argument("--revision", type=str, default=None, required=False, help="Revision of pretrained model identifier from huggingface.co/models.")
     parser.add_argument("--batch_size", type=int, default=1, help="")
     parser.add_argument("--no_plms", action='store_true', help="use DDIM instead. WARNING: I did not test the code yet")
@@ -310,6 +315,20 @@ if __name__ == "__main__":
     parser.add_argument("--token_location", type = str, default=None, help="the set of locations where each object appears in the prompt")
     args = parser.parse_args()
 
+    def seed_everything(seed):
+        np.random.seed(seed)
+        torch.manual_seed(seed)
+        torch.cuda.manual_seed_all(seed)
+        random.seed(seed)
+    seed_everything(args.seed)
+
+    if args.style is not None:
+        args.t0 = 0
+        if args.style == 'coloring-pages':
+            args.pretrained_text2img_model = 'stablediffusionapi/coloring-pages'
+        elif args.style == 'cuteyukimix':
+            args.pretrained_text2img_model = 'stablediffusionapi/cuteyukimix'
+
     if args.no_gpt:
         phrases, boundingbox, token_location = ast.literal_eval(args.object), ast.literal_eval(args.boundingbox), ast.literal_eval(args.token_location)
     else:
@@ -317,12 +336,12 @@ if __name__ == "__main__":
         
     meta_list = [ 
         dict(
-            ckpt = "you should download gligen/gligen-generation-text-box/diffusion_pytorch_model.bin and fill in the path here",
+            ckpt = "/home/cyq/zxc/RealCompo/checkpoints/gligen/diffusion_pytorch_model.bin",
             prompt = args.user_prompt,
             phrases = phrases,
             boundingbox = boundingbox,
             token_location = token_location,
-            alpha_type = [0.3, 0.0, 0.7],
+            alpha_type = [1.0, 0.0, 0.0],
             save_folder_name="generation_realcompo_v1_sd_gligen_" + args.user_prompt.replace(" ", "_")
         ),     
     ]
