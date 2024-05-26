@@ -94,7 +94,7 @@ pip install -r requirements.txt
 
 We provide the code of RealCompo v1, which is composed of Stable Diffusion v1.5 and GLIGEN.
 
-You should download the checkpoints of GLIGEN ([HF Hub](https://huggingface.co/gligen/gligen-generation-text-box/blob/main/diffusion_pytorch_model.bin)) put its path into  `inference.py`.
+You should download the checkpoints of GLIGEN ([HF Hub](https://huggingface.co/gligen/gligen-generation-text-box/blob/main/diffusion_pytorch_model.bin)) put its path into  `inference_layout.py`.
 
 ## Generating images with layout-based RealCompo
 
@@ -110,7 +110,7 @@ python inference_layout.py --user_prompt 'Two cute small corgi sitting in a movi
 
 **--api_key** is needed if you use GPT-4.
 
-**You can also use local LLMs to reason out layouts**. Example samples will be saved in `generation_samples`. You can check `inference.py` for more details about interface. 
+**You can also use local LLMs to reason out layouts**. Example samples will be saved in `generation_samples`. You can check `inference_layout.py` for more details about interface. 
 
 ```
 generation_samples
@@ -154,6 +154,7 @@ You can use RealCompo to achieve stylized compositional generation by running:
  **--style** represents the style you want for generation.
 
 In this code, we provide two styles: 'coloring-pages' and 'cuteyukimix'. 
+
 You can find more stylized T2I backbones in [Civitai](https://civitai.com/).
 
 ## Generating images with keypoint-based RealCompo
