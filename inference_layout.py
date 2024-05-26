@@ -336,7 +336,7 @@ if __name__ == "__main__":
         
     meta_list = [ 
         dict(
-            ckpt = "/home/cyq/zxc/RealCompo/checkpoints/gligen/diffusion_pytorch_model.bin",
+            ckpt = "you should download gligen/gligen-generation-text-box/diffusion_pytorch_model.bin and fill in the path here",
             prompt = args.user_prompt,
             phrases = phrases,
             boundingbox = boundingbox,
