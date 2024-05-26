@@ -57,7 +57,7 @@ We introduce a new **training-free and transferred-friendly** text-to-image gene
     <td width=100% style="border: none"><img src="figs/realcompo_key_seg.png" style="width:100%"></td>
     </tr>
     <tr>
-    <td width="100%" style="border: none; text-align: center; word-wrap: break-word">Extend RealCompo to keypoint- and segmentation-based generation.
+    <td width="100%" style="border: none; text-align: center; word-wrap: break-word">Extend RealCompo to keypoint- and segmentation-based text-to-image generation.
 </td>
   </tr>
 </table>
@@ -79,6 +79,7 @@ We introduce a new **training-free and transferred-friendly** text-to-image gene
 </td>
   </tr>
 </table>
+
 ## Installation
 
 ```shell
@@ -113,7 +114,7 @@ python inference_layout.py --user_prompt 'Two cute small corgi sitting in a movi
 
 ```
 generation_samples
-├── generation_realcompo_v1_sd_gligen_two_cute_small_corgi_sitting_in
+├── generation_realcompo_v1_sd_gligen_two_cute_small_corgi_sitting_in_a_movie_theater_
 │   ├── 0.png
 │   ├── 1.png
 |   .....
@@ -152,12 +153,13 @@ You can use RealCompo to achieve stylized compositional generation by running:
 
  **--style** represents the style you want for generation.
 
-In this code, we provide two styles: 'coloring-pages' and 'cuteyukimix'. You can find more stylized T2I backbone in [Civitai](https://civitai.com/).
+In this code, we provide two styles: 'coloring-pages' and 'cuteyukimix'. 
+You can find more stylized T2I backbones in [Civitai](https://civitai.com/).
 
 ## Generating images with keypoint-based RealCompo
 
 ```shell
-python inference_keypoint.py --user_prompt 'Elsa and Anna, sparks of magic between them, princess dress, background with sparkles, black purple red color schemes. ' --token_location "[1, 3]"
+python inference_keypoint.py --user_prompt 'Elsa and Anna, sparks of magic between them, princess dress, background with sparkles, black purple red color schemes.' --token_location "[1, 3]"
 ```
 
 **--user_prompt** is the original prompt that used to generate a image.
