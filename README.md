@@ -90,13 +90,13 @@ conda activate RealCompo
 pip install -r requirements.txt
 ```
 
-## Download models
+## Download Models
 
 We provide the code of RealCompo v1, which is composed of Stable Diffusion v1.5 and GLIGEN.
 
 You should download the checkpoints of GLIGEN ([HF Hub](https://huggingface.co/gligen/gligen-generation-text-box/blob/main/diffusion_pytorch_model.bin)) put its path into  `inference_layout.py`.
 
-## Generating images with layout-based RealCompo
+## Generating images with Layout-based RealCompo
 
 ### Option 1: Use LLMs to reason out the layout
 
@@ -143,7 +143,7 @@ You can change the backbone of the T2I model to Stable Diffusion v1.4, TokenComp
 
 The core code for updating the models' coefficients is located in `ldm/models/diffusion/plms.py`. Using this code, you can make slight modifications to replace the L2I model with another one.
 
-## Generating images with style-based RealCompo
+## Generating images with Style-based RealCompo
 
 You can use RealCompo to achieve stylized compositional generation by running:
 
@@ -157,7 +157,7 @@ In this code, we provide two styles: 'coloring-pages' and 'cuteyukimix'.
 
 You can find more stylized T2I backbones in [Civitai](https://civitai.com/).
 
-## Generating images with keypoint-based RealCompo
+## Generating images with Keypoint-based RealCompo
 
 ```shell
 python inference_keypoint.py --user_prompt 'Elsa and Anna, sparks of magic between them, princess dress, background with sparkles, black purple red color schemes.' --token_location "[1, 3]"
