@@ -106,7 +106,7 @@ You can get the results through running:
 python inference_layout.py --user_prompt 'Two cute small corgi sitting in a movie theater with two popcorns in front of them.' --api_key 'put your api_key here' 
 ```
 
-**--user_prompt** is the original prompt that used to generate a image.
+**--user_prompt** is the original prompt that used to generate an image.
 
 **--api_key** is needed if you use GPT-4.
 
