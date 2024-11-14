@@ -14,7 +14,7 @@ Official implementation of our **training-free** text-to-image framework - [Real
 >[Yong Tang](https://scholar.google.com/citations?user=ubVWrRwAAAAJ&hl=en), 
 >[Yujiu Yang](https://sites.google.com/view/iigroup-thu/about), 
 >[Bin Cui](https://cuibinpku.github.io/) 
-><br>**Tsinghua University, Peking University, University of Science and Technology of China, Southeast University, PicUp.AI, Stanford University**<br>
+><br>**Tsinghua University, Peking University, University of Science and Technology of China, Southeast University, LibAI Lab, Stanford University**<br>
 
 <details>
     <summary>Click for full abstract</summary>
@@ -175,7 +175,7 @@ You can change the backbone of the T2I model to various SDXL-based models.
 @article{zhang2024realcompo,
   title={RealCompo: Balancing Realism and Compositionality Improves Text-to-Image Diffusion Models},
   author={Zhang, Xinchen and Yang, Ling and Cai, Yaqi and Yu, Zhaochen and Wang, Kaini and Xie, Jiake and Tian, Ye and Xu, Minkai and Tang, Yong and Yang, Yujiu and Cui, Bin},
-  journal={arXiv preprint arXiv:2402.12908},
+  journal={Advances in Neural Information Processing Systems},
   year={2024}
 }
 ```
